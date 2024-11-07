@@ -1,5 +1,7 @@
 name: Frontend Continuous Deployment
 
+# run when PR against main branch is closed
+
 on:
 
   workflow_dispatch:
