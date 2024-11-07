@@ -1,6 +1,6 @@
 name: Frontend Continuous Deployment
 
-# run when push to main branch 
+# trigger when push to main branch 
 
 on:
   push:
