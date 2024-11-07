@@ -1,11 +1,9 @@
 name: Backend Continuous Deployment
 
-# run when PR against main branch is closed
+# run when push to main branch 
 
 on:
-  
-  
-  
+
   workflow_dispatch:
   push:
     branches:
