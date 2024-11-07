@@ -3,8 +3,6 @@ name: Frontend Continuous Deployment
 # run when push to main branch 
 
 on:
-
-  workflow_dispatch:
   push:
     branches:
       - main
