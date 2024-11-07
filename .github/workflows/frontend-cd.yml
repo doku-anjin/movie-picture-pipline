@@ -94,7 +94,7 @@ jobs:
           IMAGE_TAG: latest
           REPO_NAME: frontend
         run: |
-          docker build --build-arg=REACT_APP_MOVIE_API_URL=http://a599af6391eb0409a8d96c66940958bf-673633494.us-east-1.elb.amazonaws.com --tag 294538121822.dkr.ecr.us-east-1.amazonaws.com/$REPO_NAME:$IMAGE_TAG .
+          docker build --build-arg=REACT_APP_MOVIE_API_URL=http://acb5850e595b34e34ad7a6ac62a09292-1578944417.us-east-1.elb.amazonaws.com/ --tag 294538121822.dkr.ecr.us-east-1.amazonaws.com/$REPO_NAME:$IMAGE_TAG .
           docker push 294538121822.dkr.ecr.us-east-1.amazonaws.com/$REPO_NAME:$IMAGE_TAG
 
 
