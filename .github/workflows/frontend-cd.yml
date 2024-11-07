@@ -100,15 +100,22 @@ jobs:
     
 
     - name: Configure Kubeconfig
-      run:
-       aws eks update-kubeconfig --name cluster --region us-east-1
-
+      env:
+        CLUSTER_NAME: cluster
+      run: |
+        curl -o aws-iam-authenticator https://amazon-eks.s3.us-west-2.amazonaws.com/1.21.2/2021-07-05/bin/linux/amd64/aws-iam-authenticator
+        chmod +x ./aws-iam-authenticator
+        sudo mv aws-iam-authenticator /usr/local/bin
+        aws eks get-token --cluster-name $CLUSTER_NAME --region us-east-1 > /tmp/token
+        aws eks update-kubeconfig --name $CLUSTER_NAME --region us-east-1
+  
 
     - name: Deploy Docker Image to Amazon EKS
       working-directory: starter/frontend/k8s
       env:
         IMAGE_TAG: latest
         REPO_NAME: frontend
+        KUBECONFIG: /tmp/kubeconfig
       run: |
-          kustomize edit set image frontend=294538121822.dkr.ecr.us-east-1.amazonaws.com/$REPO_NAME:$IMAGE_TAG
-          kustomize build | kubectl apply -f -
+        kustomize edit set image frontend=294538121822.dkr.ecr.us-east-1.amazonaws.com/$REPO_NAME:$IMAGE_TAG
+        kustomize build | kubectl apply -f - --token=$(cat /tmp/token)
