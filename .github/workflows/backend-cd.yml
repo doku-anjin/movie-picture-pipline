@@ -3,7 +3,6 @@ name: Backend Continuous Deployment
 # run when push to main branch 
 
 on:
-  
   push:
     branches:
         - main
@@ -12,7 +11,6 @@ jobs:
   Linting:
     runs-on: ubuntu-latest
     environment: Devlopmnet Environment
-
     steps:
     - name: Check the Repository
       uses: actions/checkout@v3
@@ -33,9 +31,7 @@ jobs:
       run: cd starter/backend && pipenv run lint
 
   Test:
-    
     runs-on: ubuntu-latest
-
     steps:
     - name: Check the Repository
       uses: actions/checkout@v3

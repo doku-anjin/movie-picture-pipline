@@ -1,13 +1,10 @@
 name: Frontend Continuous Deployment
 
 # trigger when push to main branch 
-
 on:
   push:
     branches:
       - main
-    
-
 
 jobs:
   Linting:
